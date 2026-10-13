@@ -40,7 +40,7 @@ export default function ImageModal({ images, startIndex = 0, onClose }) {
 
       {/* Main column */}
       <div
-        className="flex flex-col items-center gap-3 w-full h-full py-6 px-16"
+        className="flex flex-col items-center gap-3 w-full h-full py-6 px-16 max-[900px]:px-5"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Counter */}
@@ -68,30 +68,50 @@ export default function ImageModal({ images, startIndex = 0, onClose }) {
           ))}
         </div>
 
-        {/* Dots */}
+        {/* Dots + mobile prev/next */}
         {images.length > 1 && (
-          <div className="flex gap-1.5">
-            {images.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                className="w-1.5 h-1.5 rounded-full transition-all duration-300"
-                style={{
-                  background: i === current ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.35)",
-                  transform: i === current ? "scale(1.3)" : "scale(1)",
-                }}
-              />
-            ))}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+              className="min-[900px]:hidden shrink-0 w-11 h-11 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 2L4 7l5 5" />
+              </svg>
+            </button>
+
+            <div className="flex gap-1.5">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                  style={{
+                    background: i === current ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.35)",
+                    transform: i === current ? "scale(1.3)" : "scale(1)",
+                  }}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); next(); }}
+              className="min-[900px]:hidden shrink-0 w-11 h-11 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 2l5 5-5 5" />
+              </svg>
+            </button>
           </div>
         )}
       </div>
 
-      {/* Arrows */}
+      {/* Arrows — desktop only, side */}
       {images.length > 1 && (
         <>
           <button
             onClick={(e) => { e.stopPropagation(); prev(); }}
-            className="absolute left-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
+            className="max-[900px]:hidden absolute left-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M9 2L4 7l5 5" />
@@ -99,7 +119,7 @@ export default function ImageModal({ images, startIndex = 0, onClose }) {
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
-            className="absolute right-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
+            className="max-[900px]:hidden absolute right-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 2l5 5-5 5" />
