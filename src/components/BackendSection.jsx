@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import SectionTitle from "./SectionTitle";
 import useReveal from "@/hooks/useReveal";
 import useExternalTarget from "@/hooks/useExternalTarget";
+import LinkIcon from "./LinkIcon";
 
 const detailHeading =
   "text-[10px] tracking-[0.14em] uppercase text-(--muted) mb-3 font-bold";
@@ -120,7 +121,7 @@ const extension = [
     name: "Ambrosia",
     tag: { label: "", type: "deprecated" },
     description:
-      "Extension Chrome qui capture et transmet les cookies YouTube à Orphée via Hephaïstos",
+      "Extension Chrome qui captait les cookies YouTube et les transmettait à Orphée via Héphaïstos, pour garder l'authentification à jour",
     stack: ["JS", "Manifest V3"],
     links: [
       { label: "voir l'extension", link: "https://ambrosia.olympe.center" },
@@ -154,7 +155,8 @@ function ServiceItem({ name, description, links, stack, target, tag }) {
             <span className={itemCompany}>{name}</span>
             {tag && (
               <span className={tagStyles[tag.type]}>
-                {tag.label || (tag.type === "deprecated" ? "Dépréciée" : tag.type)}
+                {tag.label ||
+                  (tag.type === "deprecated" ? "Dépréciée" : tag.type)}
               </span>
             )}
           </div>
@@ -179,9 +181,12 @@ function ServiceItem({ name, description, links, stack, target, tag }) {
                 href={link}
                 target={target}
                 rel="noopener"
-                className="relative text-[12px] text-(--muted) after:absolute after:bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-(--fg) after:transition-[width] after:duration-300 hover:after:w-full hover:text-(--fg)"
+                className="group inline-flex items-center gap-1.5 text-[12px] text-(--muted) hover:text-(--fg) transition-colors duration-300"
               >
-                {label}
+                <LinkIcon label={label} />
+                <span className="relative after:absolute after:bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-(--fg) after:transition-[width] after:duration-300 group-hover:after:w-full">
+                  {label}
+                </span>
               </a>
             ))}
         </div>
@@ -288,9 +293,9 @@ export default function BackendSection() {
               style={{ ...bioParagraphStyle, ...anim(v4) }}
             >
               <strong>Orphée génère automatiquement</strong> des vidéos courtes
-              au format TikTok à partir de l'interface Héphaistos. Ambrosia, une
-              extension Chrome, maintient les cookies YouTube frais pour que le
-              pipeline ne soit jamais bloqué.
+              au format TikTok à partir de l'interface Héphaïstos. Un Raspberry
+              Pi configuré en proxy contourne les restrictions YouTube pour que
+              le pipeline ne soit jamais bloqué.
             </p>
             <a
               ref={refCTA}
