@@ -2,10 +2,10 @@ import { useState } from "react";
 import ImageModal from "./ImageModal";
 import useReveal from "@/hooks/useReveal";
 import Pill from "./Pill";
+import LinkIcon from "./LinkIcon";
 import useExternalTarget from "@/hooks/useExternalTarget";
 
 export default function WebCard({
-  index,
   project,
   title,
   inProgress = false,
@@ -48,43 +48,9 @@ export default function WebCard({
           {/* Info */}
           <div className="max-[900px]:order-2">
             <div className="flex flex-col justify-between gap-3.5 p-11 max-[900px]:p-7.5 h-full">
-              <div className="flex items-center justify-between gap-3 flex-wrap">
-                <div className="flex items-center gap-2.5 justify-center">
-                  <span className="text-[12px] h-fit font-semibold tracking-[0.12em] text-(--muted)">
-                    {index}
-                  </span>
-                  {inProgress && (
-                    <Pill
-                      state="progress"
-                      label="En cours de développement"
-                      style={{
-                        padding: "5px 12px",
-                        fontSize: "10px",
-                        fontWeight: 600,
-                      }}
-                    />
-                  )}
-                </div>
-
-                <div className="max-[900px]:hidden flex gap-6">
-                  {links
-                    .filter((l) => l.link)
-                    .map(({ label, link }) => (
-                      <a
-                        key={link}
-                        href={link}
-                        target={target}
-                        rel="noopener"
-                        className="min-w-fit relative text-[12px] font-semibold leading-[1.08] text-(--muted) hover:text-(--fg) transition-colors duration-300 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-(--fg) after:transition-[width] after:duration-300 hover:after:w-full"
-                      >
-                        {label}
-                      </a>
-                    ))}
-                </div>
-              </div>
-
               <div className="grid gap-2">
                 <p className="text-[12px] text-(--muted)">{project}</p>
+
                 <h3
                   className="font-semibold leading-[1.08] text-(--fg)"
                   style={{ fontSize: "clamp(22px, 2.8vw, 40px)" }}
@@ -119,9 +85,9 @@ export default function WebCard({
                 ))}
               </div>
 
-              {/* Mobile links — below metrics */}
+              {/* Links — below metrics */}
               {links.filter((l) => l.link).length > 0 && (
-                <div className="min-[900px]:hidden flex gap-3">
+                <div className="flex gap-3 flex-wrap">
                   {links
                     .filter((l) => l.link)
                     .map(({ label, link }) => (
@@ -133,19 +99,7 @@ export default function WebCard({
                         className="group inline-flex h-7.25 items-center gap-1.75 w-fit border border-(--border) rounded-full px-3.75 py-1.75 text-[11px] tracking-[0.08em] uppercase text-(--muted) no-underline whitespace-nowrap transition-all duration-300 hover:bg-(--fg) hover:text-(--bg) hover:border-(--fg)"
                       >
                         {label}
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 14 14"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="shrink-0 transition-transform duration-300"
-                        >
-                          <path d="M2 12L12 2M12 2H4M12 2V10" />
-                        </svg>
+                        <LinkIcon label={label} />
                       </a>
                     ))}
                 </div>
@@ -163,12 +117,29 @@ export default function WebCard({
               style={{ background: gradient }}
             />
 
+            {inProgress && (
+              <div className="absolute top-6 left-6 z-10">
+                <Pill
+                  state="progress"
+                  label="En cours de développement"
+                  style={{
+                    padding: "5px 12px",
+                    fontSize: "10px",
+                    fontWeight: 600,
+                    background: "rgba(12, 12, 11, 0.55)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                  }}
+                />
+              </div>
+            )}
+
             {images.map((img, i) => (
               <img
                 key={i}
                 src={img.image}
                 alt={img.label || `${title} ${i + 1}`}
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-900 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover/vis:scale-[1.04] z-1"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-900 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover/vis:scale-[1.015] z-1"
                 style={{ opacity: i === current ? 1 : 0 }}
               />
             ))}
