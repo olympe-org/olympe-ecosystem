@@ -68,7 +68,7 @@ export default function FooterSection({ onReady }) {
                 : undefined,
             }}
           >
-            Anthony Ringressi
+            Développeur
           </span>
         </span>
         <div className="overflow-hidden pb-1">
@@ -88,7 +88,7 @@ export default function FooterSection({ onReady }) {
                 : undefined,
             }}
           >
-            Portfolio{" "}
+            Anthony Ringressi{" "}
             <svg
               width="0.7em"
               height="0.7em"
