@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
-const links = ["Architecture", "Interfaces", "Contact"];
+const links = [
+  { label: "Architecture", id: "architecture" },
+  { label: "Interfaces", id: "interfaces" },
+  { label: "Contact", id: "contact" },
+];
 
 export default function Navbar({ theme, onToggle }) {
   const [scrolled, setScrolled] = useState(false);
@@ -63,16 +67,16 @@ export default function Navbar({ theme, onToggle }) {
       {/* Right */}
       <div className="flex items-center gap-9">
         <ul className="max-[900px]:hidden flex gap-7 list-none">
-          {links.map((item) => (
+          {links.map(({ label, id }) => (
             <li
-              key={item}
+              key={id}
               style={{ animation: `fadeIn 0.6s ease 0.2s both` }}
             >
               <a
-                href={`#${item.toLowerCase()}`}
+                href={`#${id}`}
                 className="relative text-[12px] tracking-widest uppercase text-(--muted) hover:text-(--fg) transition-colors duration-300 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-(--fg) after:transition-[width] after:duration-300 hover:after:w-full"
               >
-                {item}
+                {label}
               </a>
             </li>
           ))}
