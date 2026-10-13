@@ -6,7 +6,7 @@ import ScrollHint from "./ScrollHint";
 
 export default function HeroSection({ onReady }) {
   const { containerRef, fontSize } = useFitText(
-    "Écosytème",
+    "Écosystème",
     undefined,
     undefined,
     onReady,
@@ -60,7 +60,7 @@ export default function HeroSection({ onReady }) {
                     "slideUp 2s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both",
                 }}
               >
-                Écosytème
+                Écosystème
               </p>
             </div>
           </div>
