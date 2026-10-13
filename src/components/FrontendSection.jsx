@@ -3,7 +3,6 @@ import WebCard from "./WebCard";
 
 const projects = [
   {
-    index: "01",
     inProgress: false,
     project: "Élysium",
     title: "Spotify Billions Club",
@@ -22,33 +21,32 @@ const projects = [
       { label: "voir le site", link: "https://elysium.olympe.center" },
     ],
     metrics: [
-      { value: "1260", label: "musiques" },
-      { value: "770", label: "artistes" },
-      { value: "1000", label: "albums" },
+      { value: "+ 1400", label: "musiques" },
+      { value: "+ 850", label: "artistes" },
+      { value: "+ 1100", label: "albums" },
     ],
     images: [
-      { label: "Page d'accueil", image: "/images/elysium-preview-home.png" },
+      { label: "Page d'accueil", image: "/images/elysium-preview-home.webp" },
       {
         label: "Toutes les musiques",
-        image: "/images/elysium-preview-titles.png",
+        image: "/images/elysium-preview-titles.webp",
       },
       {
         label: "Tous les artistes",
-        image: "/images/elysium-preview-artists.png",
+        image: "/images/elysium-preview-artists.webp",
       },
       {
         label: "Un artiste sélectionné",
-        image: "/images/elysium-preview-artist.png",
+        image: "/images/elysium-preview-artist.webp",
       },
-      { label: "Tous les albums", image: "/images/elysium-preview-albums.png" },
+      { label: "Tous les albums", image: "/images/elysium-preview-albums.webp" },
       {
         label: "Un album sélectionné",
-        image: "/images/elysium-preview-album.png",
+        image: "/images/elysium-preview-album.webp",
       },
     ],
   },
   {
-    index: "02",
     inProgress: true,
     project: "Héphaïstos",
     title: "Studio de création vidéo",
@@ -68,39 +66,47 @@ const projects = [
       { label: "voir le site", link: "https://hephaistos.olympe.center" },
     ],
     metrics: [
-      { value: "4", label: "templates" },
-      { value: "5", label: "mins" },
-      { value: "100%", label: "personnalisable" },
-      { value: "∞", label: "clips" },
+      { value: "+ 150", label: "vidéos créées" },
+      { value: "+ 240", label: "clips utilisés" },
+      { value: "+ 2h", label: "de contenu" },
+      { value: "+ 1750€", label: "générés" },
     ],
     images: [
       {
         label: "Section d'accueil",
-        image: "/images/hephaistos-preview-home.png",
+        image: "/images/hephaistos-preview-home.webp",
       },
       {
         label: "Sélectionner un template et un mode",
-        image: "/images/hephaistos-preview-templates.png",
+        image: "/images/hephaistos-preview-templates.webp",
       },
       {
         label: "Configuration",
-        image: "/images/hephaistos-preview-configuration.png",
+        image: "/images/hephaistos-preview-configuration.webp",
       },
       {
         label: "Sélectionner une source vidéo",
-        image: "/images/hephaistos-preview-youtube.png",
+        image: "/images/hephaistos-preview-youtube.webp",
       },
       {
-        label: "Importer un json",
-        image: "/images/hephaistos-preview-json.png",
-      },
-      {
-        label: "Sélectionner des musiques à plus de 1 milliard d'écoute",
-        image: "/images/hephaistos-preview-billions-club.png",
+        label: "Paramètres de la vidéo",
+        image: "/images/hephaistos-preview-video-settings.webp",
       },
       {
         label: "Suivi de la création de la vidéo",
-        image: "/images/hephaistos-preview-download.png",
+        image: "/images/hephaistos-preview-download.webp",
+      },
+      {
+        label: "Email de fin de rendu",
+        image: "/images/hephaistos-preview-email.webp",
+      },
+      {
+        label: "Partage du rendu",
+        image: "/images/hephaistos-preview-share-link.webp",
+      },
+      {
+        label: "Page utilisateur",
+        image: "/images/hephaistos-preview-user-page.webp",
       },
     ],
   },
@@ -119,7 +125,7 @@ export default function FrontendSection() {
       <div className="flex flex-col gap-4 mt-16">
         {projects.map((project) => (
           <WebCard
-            key={project.index}
+            key={project.title}
             {...project}
           />
         ))}
